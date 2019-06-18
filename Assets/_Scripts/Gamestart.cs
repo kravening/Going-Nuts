@@ -5,7 +5,8 @@
 
 //TODO Jeroen: deel functionaliteiten op.
 
-public class Gamestart : MonoBehaviour //TODO: deel deze class op.
+public class Gamestart : SingletonBase<Gamestart>
+//TODO: deel deze class op.
     {
         /// <summary>
         /// get the props gameobjects to be used for setactive
@@ -18,24 +19,8 @@ public class Gamestart : MonoBehaviour //TODO: deel deze class op.
 
         public static Gamestart instance;
 
-        private void Awake()
-        {
-            if (instance != null && instance != this)
-            {
-                Destroy(this);
-            }
-            else
-            {
-                instance = this;
-            }
-        }
-
         private void OnDestroy()
         {
-            if (instance == this)
-            {
-                instance = null;
-            }
             GameTimeManager.GameEndedEvent -= RestartGame;
         }
 

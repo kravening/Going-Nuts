@@ -8,36 +8,17 @@
 //TODO: zet save functionaliteiten in een nieuwe class.
 //TODO: check benamingen.
 
-public class Highscore : MonoBehaviour
+public class Highscore : SingletonBase<Highscore>
 {
-    /// <summary>
-    /// this variable refers to the instance of this class
-    /// </summary>
-    public static Highscore instance { get; private set; }
 
     private int _currentScore;
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (instance != null && instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            instance = this;
-        }
+        base.Awake();
 
         _currentScore = 0;
         CheckKeys();
-    }
-    
-    private void OnDestroy()
-    {
-        if (instance == this)
-        {
-            instance = null;
-        }
     }
 
     /// <summary>
@@ -46,7 +27,6 @@ public class Highscore : MonoBehaviour
     private void CheckKeys()
     {
         IntializeKey("HighScore");
-        IntializeKey("Score");
         PlayerPrefs.Save();
     }
 
@@ -94,6 +74,8 @@ public class Highscore : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", GetCurrentScore());
             PlayerPrefs.Save();
         }
+
+        _currentScore = 0;
     }
 
     /// <summary>
@@ -102,7 +84,6 @@ public class Highscore : MonoBehaviour
     /// <returns></returns>
     private int GetCurrentScore()
     {
-        
         return _currentScore;
     }
 
@@ -112,8 +93,7 @@ public class Highscore : MonoBehaviour
     /// <returns></returns>
     public int GetHighScore()
     {
-        int highscore = PlayerPrefs.GetInt("HighScore");
-        return highscore;
+        return PlayerPrefs.GetInt("HighScore"); ;
     }
 
     /// <summary>

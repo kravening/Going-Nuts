@@ -1,11 +1,13 @@
 ﻿using TMPro;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 /// <summary>
 /// This controller handles all the UI elements of the game
 /// </summary>
-public class UIController : MonoBehaviour
+
+//TODO: deze class moet even abstracter gemaakt worden.
+
+public class UIController : SingletonBase<UIController>
 {
 	/// <summary>
 	/// Gets the TextMeshProGui from the scene.
@@ -14,31 +16,12 @@ public class UIController : MonoBehaviour
 
 	[SerializeField] private GameObject highScoreUi;
 
-	/// <summary>
-	/// makes the uicontroller an instance
-	/// </summary>
-	public static UIController instance;
 
 	private int scoreText;
 
-	private void Awake()
-	{
-		if (instance != null && instance != this)
-		{
-			Destroy(this);
-		}
-		else
-		{
-			instance = this;
-		}
-	}
 
 	private void OnDestroy()
 	{
-		if (instance == this)
-		{
-			instance = null;
-		}
 		GameTimeManager.GameEndedEvent -= HighScore;
 		GameTimeManager.GameStartedEvent -= removeHighScoreUI;
 	}
