@@ -1,4 +1,4 @@
-﻿public static class StringBase
+﻿public static class StaticVariables
 {
    #region HighScore
    public static readonly string HIGH_SCORES = "HighScore";

@@ -26,7 +26,7 @@ public class Highscore : SingletonBase<Highscore>
     /// </summary>
     private void CheckKeys()
     {
-        IntializeKey(StringBase.HIGH_SCORES);
+        IntializeKey(StaticVariables.HIGH_SCORES);
         PlayerPrefs.Save();
     }
 
@@ -57,9 +57,9 @@ public class Highscore : SingletonBase<Highscore>
     /// <param name="scoreToSave"></param>
     public void SaveScoreToDevice(int scoreToSave)
     {
-        if (_currentScore > PlayerPrefs.GetInt(StringBase.SCORE))
+        if (_currentScore > PlayerPrefs.GetInt(StaticVariables.SCORE))
         {
-            PlayerPrefs.SetInt(StringBase.SCORE, scoreToSave);
+            PlayerPrefs.SetInt(StaticVariables.SCORE, scoreToSave);
             PlayerPrefs.Save();
         }
     }
@@ -71,7 +71,7 @@ public class Highscore : SingletonBase<Highscore>
     {
         if (GetCurrentScore() > GetHighScore())
         {
-            PlayerPrefs.SetInt(StringBase.HIGH_SCORES, GetCurrentScore());
+            PlayerPrefs.SetInt(StaticVariables.HIGH_SCORES, GetCurrentScore());
             PlayerPrefs.Save();
         }
 
@@ -93,7 +93,7 @@ public class Highscore : SingletonBase<Highscore>
     /// <returns></returns>
     public int GetHighScore()
     {
-        return PlayerPrefs.GetInt(StringBase.HIGH_SCORES); ;
+        return PlayerPrefs.GetInt(StaticVariables.HIGH_SCORES); ;
     }
 
     /// <summary>

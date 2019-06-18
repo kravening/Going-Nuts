@@ -30,7 +30,7 @@ using UnityEngine;
         public void RuffleTree()
         {
             _particleSystem?.Play(true);
-            _treeAnimator?.SetTrigger(StringBase.RUFFLE);
+            _treeAnimator?.SetTrigger(StaticVariables.RUFFLE);
             _audioSource?.Play();
         }
     }
