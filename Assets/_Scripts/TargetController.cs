@@ -5,13 +5,13 @@ using UnityEngine;
 /// <summary>
 /// This class controls the behaviour of the target.
 /// </summary>
-public class SquirrelController : MonoBehaviour
+public class TargetController : MonoBehaviour
 {
     // this is a reference to the treerufflebehaviour on the inhabitants tree.
     [SerializeField]private TreeRuffleBehaviour treeRuffleBehaviour;
 
-    // these booleans are use to keep track of the state of the squirrel
-    private bool _isSquirrelHidden = true;
+    // these booleans are use to keep track of the state of the target
+    private bool _isTargetHidden = true;
     private bool _isHiding = false;
 
     // this is a reference to the animator component on this object
@@ -28,23 +28,23 @@ public class SquirrelController : MonoBehaviour
     }
 
     /// <summary>
-    /// this function calls the squirrel to show up.
+    /// this function calls the target to show up.
     /// </summary>
     public void Show()
     {
-        if (_isSquirrelHidden)
+        if (_isTargetHidden)
         {
-            _isSquirrelHidden = false;
-            SquirrelManager.instance?.SquirrelShown();
-            StartCoroutine(ShowSquirrelRoutine());
+            _isTargetHidden = false;
+            TargetManager.instance?.TargetShown();
+            StartCoroutine(ShowTargetRoutine());
         }
     }
 
     /// <summary>
-    /// this is a routine for showing the squirrels, ensuring the logic is in the right order.
+    /// this is a routine for showing the targets, ensuring the logic is in the right order.
     /// </summary>
     /// <returns></returns>
-    private IEnumerator ShowSquirrelRoutine()
+    private IEnumerator ShowTargetRoutine()
     {
         treeRuffleBehaviour?.RuffleTree();
         yield return new WaitForSeconds(0.5f);
@@ -52,26 +52,26 @@ public class SquirrelController : MonoBehaviour
         _animator?.SetBool("IsShowing", true);
         yield return new WaitForSeconds(4);
 
-        //if squirrel isn't already hidden or starting to hide.
-        if (_isSquirrelHidden == false && _isHiding == false)
+        //if target isn't already hidden or starting to hide.
+        if (_isTargetHidden == false && _isHiding == false)
         {
             Hide();
         }
     }
 
     /// <summary>
-    /// this function calls for the squirrel to hide.
+    /// this function calls for the target to hide.
     /// </summary>
     private void Hide()
     {
-        SquirrelManager.instance?.SquirrelHiding();
-        StartCoroutine(HideSquirrelRoutine());
+        TargetManager.instance?.TargetHiding();
+        StartCoroutine(HideTargetRoutine());
     }
 
     /// <summary>
-    /// this is a routine for hiding the squirrels, ensuring the logic is in the right order.
+    /// this is a routine for hiding the targets, ensuring the logic is in the right order.
     /// </summary>
-    private IEnumerator HideSquirrelRoutine()
+    private IEnumerator HideTargetRoutine()
     {
         //stops the possibility of this routine being called while it's already running.
         if (hideStarted == true)
@@ -90,7 +90,7 @@ public class SquirrelController : MonoBehaviour
         _isHiding = true;
         _animator?.SetBool("IsShowing", false);
         yield return new WaitForSeconds(0.5f);
-        _isSquirrelHidden = true;
+        _isTargetHidden = true;
         _isHiding = false;
         hideStarted = false;
     }
@@ -106,7 +106,7 @@ public class SquirrelController : MonoBehaviour
         newProjectile.transform.LookAt(Camera.main.transform);
 
         GameObject instantiatedIngredient = Instantiate(newProjectile.gameObject);
-        instantiatedIngredient.transform.parent = SquirrelManager.instance.transform.parent;
+        instantiatedIngredient.transform.parent = TargetManager.instance.transform.parent;
 
         Destroy(incomingIngredient.gameObject);
         _animator?.SetTrigger("ThrowIngredient");

@@ -5,19 +5,19 @@ using UnityEngine;
 /// <summary>
 /// This class handles the incoming collisions of the targets
 /// </summary>
-public class SquirrelCollision : MonoBehaviour
+public class TargetCollision : MonoBehaviour
 {
 
-    private SquirrelController _squirrelController;
+    private TargetController _targetController;
 
     private void Awake()
     {
-        _squirrelController = gameObject.GetComponent<SquirrelController>();
+        _targetController = gameObject.GetComponent<TargetController>();
     }
 
     private void OnCollisionEnter(Collision collider)
     {
-        if (collider.gameObject?.GetComponent<Projectile>()?.foodType == _squirrelController?.GetPreferredFoodType())
+        if (collider.gameObject?.GetComponent<Projectile>()?.foodType == _targetController?.GetPreferredFoodType())
         {
             EatIngredient();
             Destroy(collider.gameObject);
@@ -29,15 +29,15 @@ public class SquirrelCollision : MonoBehaviour
     }
 
     /// <summary>
-    /// if the colliding object is a nut this function gets called and calls for the squirrel to hide, and increments the score.
+    /// if the colliding object is a nut this function gets called and calls for the target to hide, and increments the score.
     /// </summary>
     private void EatIngredient()
     {
-        _squirrelController?.EatIngredient();
+        _targetController?.EatIngredient();
     }
 
     private void ThrowIngredient(Projectile ingredient)
     {
-        _squirrelController?.ThrowIngredient(ingredient);
+        _targetController?.ThrowIngredient(ingredient);
     }
 }

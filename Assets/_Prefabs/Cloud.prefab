@@ -4810,7 +4810,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5379478920641403541}
   - component: {fileID: 7353914584653217781}
-  - component: {fileID: 6082583208680670761}
+  - component: {fileID: 7606211910690219094}
   m_Layer: 0
   m_Name: Cloud
   m_TagString: Untagged
@@ -4882,22 +4882,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!111 &6082583208680670761
-Animation:
+--- !u!95 &7606211910690219094
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4189863961761412921}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 3d519cd2f30abd444b2c2f8b71389e7f, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 3d519cd2f30abd444b2c2f8b71389e7f, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c2dcb61db6fed0f4291177719e1f7484, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7798790327360885743
 GameObject:
   m_ObjectHideFlags: 0
