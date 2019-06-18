@@ -49,7 +49,7 @@ public class TargetController : MonoBehaviour
         treeRuffleBehaviour?.RuffleTree();
         yield return new WaitForSeconds(0.5f);
 
-        _animator?.SetBool("IsShowing", true);
+        _animator?.SetBool(StringBase.IS_SHOWING, true);
         yield return new WaitForSeconds(4);
 
         //if target isn't already hidden or starting to hide.
@@ -88,7 +88,7 @@ public class TargetController : MonoBehaviour
         }
 
         _isHiding = true;
-        _animator?.SetBool("IsShowing", false);
+        _animator?.SetBool(StringBase.IS_SHOWING, false);
         yield return new WaitForSeconds(0.5f);
         _isTargetHidden = true;
         _isHiding = false;
@@ -109,7 +109,7 @@ public class TargetController : MonoBehaviour
         instantiatedIngredient.transform.parent = TargetManager.instance.transform.parent;
 
         Destroy(incomingIngredient.gameObject);
-        _animator?.SetTrigger("ThrowIngredient");
+        _animator?.SetTrigger(StringBase.THROW_INGREDIENT);
         yield return new WaitForSeconds(0.25f);
         Hide();
     }
@@ -121,7 +121,7 @@ public class TargetController : MonoBehaviour
     private IEnumerator EatIngredientRoutine()
     {
         Highscore.instance?.IncrementScore(100);
-        _animator?.SetTrigger("EatIngredient");
+        _animator?.SetTrigger(StringBase.EAT_INGREDIENT);
 
         _justAte = true;
         yield return new WaitForSeconds(0.25f);
