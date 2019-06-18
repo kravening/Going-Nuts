@@ -6,13 +6,8 @@ using Random = UnityEngine.Random;
 /// <summary>
 /// This class manages a collection of target controllers
 /// </summary>
-public class SquirrelManager : MonoBehaviour
+public class SquirrelManager : SingletonBase<SquirrelManager>
 {
-    /// <summary>
-    /// the instance off this singleton, this variable the class it's in.
-    /// </summary>
-    public static SquirrelManager instance;
-
     /// <summary>
     /// a list with references to squirrels in the field.
     /// </summary>
@@ -53,17 +48,9 @@ public class SquirrelManager : MonoBehaviour
     /// </summary>
     private bool _isGameRunning = false;
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (instance != null && instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            instance = this;
-        }
-        
+        base.Awake();
         // if there are more max squirrels showing in the squirrels list, set max squirrels showing to the amount of elements in the list to prevent index errors.
         if (_maxSquirrelsShowing > squirrels.Count)
         {
@@ -75,16 +62,6 @@ public class SquirrelManager : MonoBehaviour
     {
         GameTimeManager.GameStartedEvent += ResumeSpawning;
         GameTimeManager.GameEndedEvent += PauseSpawning;
-    }
-
-
-    private void OnDestroy()
-    {
-
-        if (instance == this)
-        {
-            instance = null;
-        }
     }
 
     private void Update()

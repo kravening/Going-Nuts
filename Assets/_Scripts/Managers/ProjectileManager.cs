@@ -1,44 +1,24 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-
 /// <summary>
 /// This class takes track of which projectile is next in the queue to shoot.
 /// </summary>
-public class ProjectileManager : MonoBehaviour
+public class ProjectileManager : SingletonBase<ProjectileManager>
 {
     public Projectile projectile;// all the projectile objects available
-    public List<FoodEnums.FoodType> foodTypeQueue =  new List<FoodEnums.FoodType>();// queue for next projectile
+    public List<FoodEnums.FoodType> foodTypeQueue =  new List<FoodEnums.FoodType>(); // queue for next projectile
 
     private int _queueSize = 4;
 
     public static ProjectileManager instance;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         InitializeProjectileQueue();
-        if (instance != null && instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            instance = this;
-        }
     }
 
-    private void OnDestroy()
-    {
-        if (instance == this)
-        {
-            instance = null;
-        }
-    }
-
-    private void Start()
-    {
-       // DisplayPlayerIngredient.instance.DisplayNextIngredient(GetFoodEnumFromIndex(0));
-    }
     /// <summary>
     /// this function takes care of the initial setup of the queue.
     /// </summary>
@@ -70,7 +50,6 @@ public class ProjectileManager : MonoBehaviour
 
         foodTypeQueue.RemoveAt(0);
         QueueNewFoodType();
-        Debug.Log(foodTypeQueue[0] + "   :   " + foodTypeQueue[1]);
         return projectileToShoot;
     }
 

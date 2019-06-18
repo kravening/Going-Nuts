@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-//TODO: kijk of ;er een timer class gemaakt kan worden.
+//TODO: kijk of er een timer class gemaakt kan worden.
 //TODO: consts waar zo nodig.
 
     /// <summary>
     /// This class is the manager for the in-game time
     /// </summary>
-    public class GameTimeManager : MonoBehaviour
+    public class GameTimeManager : SingletonBase<GameTimeManager>
     {
         /// <summary>
         /// an event signaling the game has started
@@ -38,11 +38,6 @@ using UnityEngine;
         public static event GameEnded GameEndedEvent;
 
         /// <summary>
-        /// instance of this class
-        /// </summary>
-        public static GameTimeManager instance { get; private set; }
-
-        /// <summary>
         /// current time of the game round
         /// </summary>
         public float currentTime { get; private set; }
@@ -51,27 +46,6 @@ using UnityEngine;
         /// max time of any given game round
         /// </summary>
         private float _roundTime = 180;
-        
-
-        private void Awake()
-        {
-            if (instance != null && instance != this)
-            {
-                Destroy(this);
-            }
-            else
-            {
-                instance = this;
-            }
-        }
-
-        private void OnDestroy()
-        {
-            if (instance == this)
-            {
-                instance = null;
-            }
-        }
 
         /// <summary>
         /// this invokes the game started event, and starts the timer for the game.
