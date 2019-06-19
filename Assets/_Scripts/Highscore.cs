@@ -8,7 +8,7 @@
 public class Highscore : SingletonBase<Highscore>
 {
     private int _currentScore; 
-    private KeyHandler keyHandler;
+    private KeyHandler _keyHandler;
 
     private void OnDestroy()
     {
@@ -21,7 +21,7 @@ public class Highscore : SingletonBase<Highscore>
     
         _currentScore = 0;
 
-        keyHandler = new KeyHandler();
+        _keyHandler = new KeyHandler();
         GameTimeManager.GameEndedEvent += SaveHighScore;
     }
 
@@ -51,9 +51,9 @@ public class Highscore : SingletonBase<Highscore>
     /// </summary>
     public void SaveHighScore()
     {
-        if (_currentScore > keyHandler.GetKey("Highscore"))
+        if (_currentScore > _keyHandler.GetKey("Highscore"))
         {
-            keyHandler.SetKey("Highscore", _currentScore);
+            _keyHandler.SetKey("Highscore", _currentScore);
         }
         _currentScore = 0;
     }
