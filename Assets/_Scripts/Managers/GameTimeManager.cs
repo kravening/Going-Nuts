@@ -21,14 +21,14 @@ using UnityEngine;
         /// </summary>
         public delegate void GamePaused();
 
-        public event GamePaused GamePausedEvent;
+        public static event GamePaused GamePausedEvent;
 
         /// <summary>
         /// an event signaling the game has resumed
         /// </summary>
         public delegate void GameResumed();
 
-        public event GamePaused GameResumedEvent;
+        public static event GamePaused GameResumedEvent;
 
         /// <summary>
         /// an event signaling the game has ended
