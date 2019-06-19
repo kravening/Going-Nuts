@@ -10,11 +10,6 @@ public class Highscore : SingletonBase<Highscore>
     private int _currentScore; 
     private KeyHandler _keyHandler;
 
-    private void OnDestroy()
-    {
-        GameTimeManager.GameEndedEvent -= SaveHighScore;
-    }
-
     protected override void Awake()
     {
         base.Awake();
@@ -23,6 +18,11 @@ public class Highscore : SingletonBase<Highscore>
 
         _keyHandler = new KeyHandler();
         GameTimeManager.GameEndedEvent += SaveHighScore;
+    }
+
+    private void OnDestroy()
+    {
+        GameTimeManager.GameEndedEvent -= SaveHighScore;
     }
 
     /// <summary>
