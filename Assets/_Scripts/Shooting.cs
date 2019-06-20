@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Net.Sockets;
 using UnityEngine;
 
 /// <summary>
@@ -13,23 +12,18 @@ public class Shooting : MonoBehaviour
 
     private void Awake()
     {
-
         if (_arCamera)
         {
             return;
         }
 
         _arCamera = Camera.main;
-    }
-    private void Start()
-    {
-        StartCoroutine(StartCooldown(_cooldown));
-        DisplayPlayerIngredient.instance.DisplayNextIngredient(ProjectileManager.instance.GetFoodEnumFromIndex(0));
+        TouchInputManager.SingleTouchEvent += Shoot;
     }
 
-    private void Update()
+    private void OnDestroy()
     {
-        Shoot();
+        TouchInputManager.SingleTouchEvent -= Shoot;
     }
 
     /// <summary>
@@ -37,14 +31,17 @@ public class Shooting : MonoBehaviour
     /// </summary>
     private void Shoot()
     {
-        if (Input.touches.Length != 0 && _canShoot)  
+        if (_canShoot)  
         {
             GameObject bullet = Instantiate(ProjectileManager.instance?.GetProjectileFromQueue().gameObject, _arCamera.transform.position + (_arCamera.transform.forward * 1), _arCamera.transform.rotation);
             bullet.transform.parent = this.transform;
-            StartCoroutine(StartCooldown(_cooldown));
+
             DisplayPlayerIngredient.instance.DisplayNextIngredient(ProjectileManager.instance.GetFoodEnumFromIndex(0));
+
+            StartCoroutine(StartCooldown(_cooldown));
         }
     }
+
     /// <summary>
     /// This routine manages the cooldown for the bullet
     /// </summary>
