@@ -1,8 +1,7 @@
 ﻿public static class StaticVariables
 {
    #region HighScore
-   public static readonly string HIGH_SCORES = "HighScore";
-   public static readonly string SCORE = "Score";
+   public static readonly string HIGH_SCORE = "HighScore";
    #endregion
 
    #region Target
@@ -12,8 +11,6 @@
    #endregion
    
    #region Ruffle
-
    public static readonly string RUFFLE = "Ruffle";
-
    #endregion"
 }
