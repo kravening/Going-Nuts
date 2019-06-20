@@ -51,9 +51,9 @@ public class Highscore : SingletonBase<Highscore>
     /// </summary>
     public void SaveHighScore()
     {
-        if (_currentScore > _keyHandler.GetKey("Highscore"))
+        if (_currentScore > _keyHandler.GetKey(StaticVariables.HIGH_SCORES))
         {
-            _keyHandler.SetKey("Highscore", _currentScore);
+            _keyHandler.SetKey(StaticVariables.HIGH_SCORES, _currentScore);
         }
         _currentScore = 0;
     }
