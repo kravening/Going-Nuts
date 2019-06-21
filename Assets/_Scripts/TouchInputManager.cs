@@ -21,11 +21,6 @@ public class TouchInputManager : SingletonBase<TouchInputManager>
     /// </summary>
     private void CheckInput()
     {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            SingleTouchEvent?.Invoke();
-        }
-
         // we're only checking for a single touch right now, when needed this could easily be extended to support more touches.
         switch (Input.touchCount)
         {

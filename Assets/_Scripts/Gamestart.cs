@@ -17,8 +17,6 @@ public class Gamestart : SingletonBase<Gamestart>
         /// </summary>
         [SerializeField] public Animator treeFlipAnimator;
 
-        public static Gamestart instance;
-
         private void Start()
         {
             GameTimeManager.GameEndedEvent += RestartGame;

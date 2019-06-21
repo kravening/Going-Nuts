@@ -17,10 +17,8 @@ public abstract class ElementComparerBase : MonoBehaviour
     /// <param name="CheckElementLegality"></param>
     protected virtual void CheckElementLegality(ScriptableObjectElement element)
     {
-        Debug.Log("comparing");
         if (!element) // given element is null, stop function.
         {
-            Debug.Log("no element");
             return;
         }
 
@@ -28,13 +26,11 @@ public abstract class ElementComparerBase : MonoBehaviour
 
         if (CompareElement(_lastElement))
         {
-            Debug.Log("legal");
             OnLegalElementFound();
             return;
         }
         else
         {
-            Debug.Log("illegal");
             OnIllegalElementFound();
         }
     }
