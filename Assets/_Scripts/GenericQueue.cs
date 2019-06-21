@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class GenericQueue<T> : MonoBehaviour
+public class GenericQueue<T>
 {
-    private List<T> queue = new List<T>(); // Generic queue list
+    public List<T> queue = new List<T>(); // Generic queue list
 
     /// <summary>
     /// This function adds a new generic to the queue
