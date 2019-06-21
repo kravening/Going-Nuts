@@ -8,7 +8,7 @@ public class Shooting : MonoBehaviour
 {
     public Camera _arCamera;
     [SerializeField]private float _cooldown = 0.8f;
-    private bool _canShoot = false;
+    private bool _canShoot;
 
     private void Awake()
     {
@@ -18,12 +18,26 @@ public class Shooting : MonoBehaviour
         }
 
         _arCamera = Camera.main;
-        TouchInputManager.SingleTouchEvent += Shoot;
+    }
+
+    private void Start()
+    {
+        TouchInputManager.instance.SingleTouchEvent += Shoot;
+        StartCoroutine(StartCooldown(_cooldown));
+        if (ProjectileManager.instance)
+        {
+            Debug.Log("instance found");
+        }
+
+        if (ProjectileManager.instance.GetProjectileFromQueue())
+        {
+            Debug.Log("projectile found");
+        }
     }
 
     private void OnDestroy()
     {
-        TouchInputManager.SingleTouchEvent -= Shoot;
+        TouchInputManager.instance.SingleTouchEvent -= Shoot;
     }
 
     /// <summary>
@@ -33,10 +47,10 @@ public class Shooting : MonoBehaviour
     {
         if (_canShoot)  
         {
-            GameObject bullet = Instantiate(ProjectileManager.instance?.GetProjectileFromQueue().gameObject, _arCamera.transform.position + (_arCamera.transform.forward * 1), _arCamera.transform.rotation);
+            GameObject bullet = Instantiate(ProjectileManager.instance.GetProjectileFromQueue(), _arCamera.transform.position + (_arCamera.transform.forward * 1), _arCamera.transform.rotation);
             bullet.transform.parent = this.transform;
 
-            DisplayPlayerIngredient.instance.DisplayNextIngredient(ProjectileManager.instance.GetFoodEnumFromIndex(0));
+            DisplayPlayerIngredient.instance.DisplayNextIngredient(ProjectileManager.instance.GetIngredientTypeFromIndex(0));
 
             StartCoroutine(StartCooldown(_cooldown));
         }

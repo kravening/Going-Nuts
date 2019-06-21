@@ -4,15 +4,16 @@ using UnityEngine;
 /// <summary>
 /// This class handles the collision for the player
 /// </summary>
-public class PlayerCollision : MonoBehaviour
+public class PlayerCollision : CollisionElementComparer
 {
-    private void OnCollisionEnter(Collision collider)
+    protected override void OnLegalElementFound()
     {
-        if (collider?.gameObject?.GetComponent<Projectile>())
-        {
-            Highscore.instance.DecrementScore(100);
-            Destroy(collider.gameObject);
-            // TODO: play minecraft steve OOF sound clip.
-        }
+        Highscore.instance.DecrementScore(100);
+        Destroy(_lastElement.gameObject);
+    }
+
+    protected override void OnIllegalElementFound()
+    {
+        //nothing
     }
 }

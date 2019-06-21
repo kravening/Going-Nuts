@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// This class handles the incoming collisions of the targets
 /// </summary>
-public class TargetCollision : MonoBehaviour
+public class TargetCollision : CollisionElementComparer
 {
 
     private TargetController _targetController;
@@ -15,16 +15,20 @@ public class TargetCollision : MonoBehaviour
         _targetController = gameObject.GetComponent<TargetController>();
     }
 
-    private void OnCollisionEnter(Collision collider)
+    protected override void OnLegalElementFound()
     {
-        if (collider.gameObject?.GetComponent<Projectile>()?.foodType == _targetController?.GetPreferredFoodType())
+        Debug.Log("legal collision");
+        EatIngredient();
+        Destroy(_lastElement.gameObject);
+    }
+
+    protected override void OnIllegalElementFound()
+    {
+        Debug.Log("illegal collision");
+        Projectile collidingProjectile = _lastElement?.gameObject?.GetComponent<Projectile>();
+        if (collidingProjectile)
         {
-            EatIngredient();
-            Destroy(collider.gameObject);
-        }
-        else if(collider?.gameObject?.GetComponent<Projectile>())
-        {
-            ThrowIngredient(collider.gameObject.GetComponent<Projectile>());
+            ThrowIngredient(collidingProjectile);
         }
     }
 

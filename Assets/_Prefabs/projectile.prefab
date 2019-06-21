@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7983315563613852485}
   - component: {fileID: 1577542387235741877}
   - component: {fileID: -8763282865282270999}
+  - component: {fileID: 2770441671222623988}
   m_Layer: 0
   m_Name: projectile
   m_TagString: Nut
@@ -27,8 +28,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3142717725459941812}
-  m_LocalRotation: {x: -0.0057298746, y: 0.9938538, z: 0.091256306, w: 0.062402897}
-  m_LocalPosition: {x: -1.0603588, y: 0.91148365, z: 0.24056679}
+  m_LocalRotation: {x: 0, y: 0.98630005, z: 0.16496155, w: 0}
+  m_LocalPosition: {x: -1.07, y: 1.2683874, z: -0.89769864}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -64,7 +65,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _velocity: 10
   _destroyAfterSeconds: 5
-  foodType: 2
+  ingredientType: {fileID: 2770441671222623988}
 --- !u!212 &1577542387235741877
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -126,3 +127,16 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.15444107
   m_Center: {x: 0, y: 0.15444107, z: 0}
+--- !u!114 &2770441671222623988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3142717725459941812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7f7ae5a12839184fb04a81eb1e8b87f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  element: {fileID: 11400000, guid: 0dbed58179037bf4096af208d6a49eb5, type: 2}

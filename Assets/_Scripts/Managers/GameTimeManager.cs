@@ -54,7 +54,7 @@ using UnityEngine;
         {
             //resets round time.
             currentTime = _roundTime;
-            GameStartedEvent.Invoke();
+            GameStartedEvent?.Invoke();
             StartCoroutine(GameTimer());
         }
 
@@ -64,7 +64,7 @@ using UnityEngine;
         public void PauseGame()
         {
             Time.timeScale = 0;
-            GamePausedEvent.Invoke();
+            GamePausedEvent?.Invoke();
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ using UnityEngine;
         public void ResumeGame()
         {
             Time.timeScale = 1;
-            GameResumedEvent.Invoke();
+            GameResumedEvent?.Invoke();
         }
 
         /// <summary>
@@ -101,6 +101,6 @@ using UnityEngine;
         /// </summary>
         private void EndGame()
         {
-            GameEndedEvent.Invoke();
+            GameEndedEvent?.Invoke();
         }
     }

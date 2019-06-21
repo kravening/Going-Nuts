@@ -16,7 +16,6 @@ public class SpriteDataManager : SingletonBase<SpriteDataManager>
     {
         if (index > foodSpriteList?.Count)
         {
-            //fallback sprite
             return foodSpriteList[0];
         }
 

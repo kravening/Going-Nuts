@@ -8,7 +8,7 @@ public class TouchInputManager : SingletonBase<TouchInputManager>
 
     public delegate void SingleTouch();
 
-    public static event SingleTouch SingleTouchEvent;
+    public event SingleTouch SingleTouchEvent;
 
     // Update is called once per frame
     private void Update()
@@ -19,7 +19,7 @@ public class TouchInputManager : SingletonBase<TouchInputManager>
     /// <summary>
     /// Function checks if and with how many finger the user is touching the screen, and then invokes corresponding event.
     /// </summary>
-    private static void CheckInput()
+    private void CheckInput()
     {
         // we're only checking for a single touch right now, when needed this could easily be extended to support more touches.
         switch (Input.touchCount)

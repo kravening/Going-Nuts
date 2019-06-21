@@ -17,7 +17,7 @@ public class TargetController : MonoBehaviour
     // this is a reference to the animator component on this object
     private Animator _animator;
 
-    public FoodEnums.FoodType _preferredFoodType;
+    public ScriptableObject _preferredFoodType;
 
     private bool _justAte = false;
     private bool hideStarted = false;
@@ -94,6 +94,7 @@ public class TargetController : MonoBehaviour
         _isHiding = false;
         hideStarted = false;
     }
+
     /// <summary>
     /// this coroutine takes in a projectile and 'throws' a new projectile with the same properties in the direction of the player.
     /// </summary>
@@ -101,7 +102,7 @@ public class TargetController : MonoBehaviour
     /// <returns></returns>
     private IEnumerator ThrowIngredientRoutine(Projectile incomingIngredient)
     { 
-        Projectile newProjectile = ProjectileManager.instance.GetProjectileWithSetIngredientType(incomingIngredient.foodType);
+        Projectile newProjectile = ProjectileManager.instance.GetProjectileWithSetIngredientType(incomingIngredient.ingredientType.element);
         newProjectile.transform.position = incomingIngredient.transform.position;
         newProjectile.transform.LookAt(Camera.main.transform);
 
@@ -144,14 +145,5 @@ public class TargetController : MonoBehaviour
     public void EatIngredient()
     {
         StartCoroutine(EatIngredientRoutine());
-    }
-
-    /// <summary>
-    /// returns the preferred food type of this instance.
-    /// </summary>
-    /// <returns></returns>
-    public FoodEnums.FoodType GetPreferredFoodType()
-    {
-        return _preferredFoodType;
     }
 }

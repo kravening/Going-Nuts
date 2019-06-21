@@ -17,23 +17,21 @@ public class Gamestart : SingletonBase<Gamestart>
         /// </summary>
         [SerializeField] public Animator treeFlipAnimator;
 
-        public static Gamestart instance;
+        private void Start()
+        {
+            GameTimeManager.GameEndedEvent += RestartGame;
+        }
 
         private void OnDestroy()
         {
             GameTimeManager.GameEndedEvent -= RestartGame;
         }
 
-        private void Start()
-        {
-            GameTimeManager.GameEndedEvent += RestartGame;
-        }
-
-        /// <summary>
-        /// test function
-        /// </summary>
-        // Update is called once per frame
-        private void Update()
+    /// <summary>
+    /// test function
+    /// </summary>
+    // Update is called once per frame
+    private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
