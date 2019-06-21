@@ -11,8 +11,10 @@ public class DisplayPlayerIngredient : SingletonBase<DisplayPlayerIngredient>
     /// <summary>
     /// Call this function to display the ingredient
     /// </summary>
-    public void DisplayNextIngredient(FoodEnums.FoodType food)
+    public void DisplayNextIngredient(ScriptableObject food)
     {
-        nextPlayerIngredient.GetComponent<Image>().sprite = SpriteDataManager.instance.GetFoodSpriteFromList((int)food);
+        nextPlayerIngredient.GetComponent<Image>().sprite = SpriteDataManager.instance.GetFoodSpriteFromList(IngredientTypeRegister.instance.GetIngredientIndex(food));
+
+
     }
 }

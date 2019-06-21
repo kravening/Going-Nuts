@@ -15,7 +15,7 @@ public class Projectile : MonoBehaviour
     [SerializeField]private float _destroyAfterSeconds = 2.5f;
     private Rigidbody _rb;
     private SpriteRenderer _spriteRenderer;
-    public FoodEnums.FoodType foodType;
+    public ScriptableObjectElement ingredientType;
 
 
 
@@ -28,8 +28,8 @@ public class Projectile : MonoBehaviour
 
     private void Start()
     {
-        //assigns project the matching sprite. 
-        _spriteRenderer.sprite = SpriteDataManager.instance.GetFoodSpriteFromList((int) foodType);
+        //assigns projectile the matching sprite. 
+        _spriteRenderer.sprite = SpriteDataManager.instance.GetFoodSpriteFromList(IngredientTypeRegister.instance.GetIngredientIndex(ingredientType.element));
 
         StartCoroutine(DestroyProjectileTimer(_destroyAfterSeconds));
         MoveProjectile();

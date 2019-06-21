@@ -19,21 +19,21 @@ public class Gamestart : SingletonBase<Gamestart>
 
         public static Gamestart instance;
 
-        private void OnDestroy()
-        {
-            GameTimeManager.GameEndedEvent -= RestartGame;
-        }
-
         private void Start()
         {
             GameTimeManager.GameEndedEvent += RestartGame;
         }
 
-        /// <summary>
-        /// test function
-        /// </summary>
-        // Update is called once per frame
-        private void Update()
+        private void OnDestroy()
+        {
+            GameTimeManager.GameEndedEvent -= RestartGame;
+        }
+
+    /// <summary>
+    /// test function
+    /// </summary>
+    // Update is called once per frame
+    private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
