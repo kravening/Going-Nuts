@@ -13,23 +13,20 @@ public class UIController : SingletonBase<UIController>
 	/// Gets the TextMeshProGui from the scene.
 	/// </summary>
 	[SerializeField] private TextMeshProUGUI[] textItems;
-
 	[SerializeField] private GameObject highScoreUi;
-
-
 	private int scoreText;
 
 
 	private void OnDestroy()
 	{
-		GameTimeManager.GameEndedEvent -= HighScore;
-		GameTimeManager.GameStartedEvent -= removeHighScoreUI;
+		GameTimeManager.GameEndedEvent -= ActivateHighScoreUi;
+		GameTimeManager.GameStartedEvent -= DeactivateHighScoreUi;
 	}
 
 	private void Start()
 	{
-		GameTimeManager.GameEndedEvent += HighScore;
-		GameTimeManager.GameStartedEvent += removeHighScoreUI;
+		GameTimeManager.GameEndedEvent += ActivateHighScoreUi;
+		GameTimeManager.GameStartedEvent += DeactivateHighScoreUi;
 	}
 
 	/// <summary>
@@ -42,12 +39,12 @@ public class UIController : SingletonBase<UIController>
 		textItems[0].text = score.ToString();
 	}
 
-	private void removeHighScoreUI()
+	private void DeactivateHighScoreUi()
 	{
 		highScoreUi.SetActive(false);
 	}
 
-	private void HighScore()
+	private void ActivateHighScoreUi()
 	{
 		highScoreUi.SetActive(true);
 		textItems[2].text = scoreText.ToString();

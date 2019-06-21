@@ -5,20 +5,14 @@
 
 //TODO Jeroen: deel functionaliteiten op.
 
-public class Gamestart : SingletonBase<Gamestart>
+public class GameStartManager : SingletonBase<GameStartManager>
 //TODO: deel deze class op.
     {
         /// <summary>
         /// get the props gameobjects to be used for setactive
         /// </summary>
         [SerializeField] private GameObject[] props;
-        /// <summary>
-        /// gets the animator
-        /// </summary>
-        [SerializeField] public Animator treeFlipAnimator;
-
-        public static Gamestart instance;
-
+      
         private void OnDestroy()
         {
             GameTimeManager.GameEndedEvent -= RestartGame;
@@ -28,35 +22,20 @@ public class Gamestart : SingletonBase<Gamestart>
         {
             GameTimeManager.GameEndedEvent += RestartGame;
         }
-
-        /// <summary>
-        /// test function
-        /// </summary>
-        // Update is called once per frame
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                //TreeRuffleBehaviour.Instance.TreeFlip();
-                props[0]?.SetActive(false);
-                GameStart();
-            }
-        }
-        
         /// <summary>
         /// Checks collision and calls gamestart when its hit
         /// </summary>
         /// <param name="collision"></param>
+        //TODO: Zet naar de collision class
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.CompareTag("Nut"))
             {
                 GameStart();
-                //TreeRuffleBehaviour.Instance.TreeFlip();
             }
         }
 
-        public void RestartGame()
+        private void RestartGame()
         {
             props[0]?.SetActive(true);
         }
