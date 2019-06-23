@@ -22,14 +22,14 @@ public class UIController : SingletonBase<UIController>
 
 	private void OnDestroy()
 	{
-		GameTimeManager.GameEndedEvent -= HighScore;
-		GameTimeManager.GameStartedEvent -= removeHighScoreUI;
+		EventCatalogue.GameEndedEvent -= HighScore;
+		EventCatalogue.GameStartedEvent -= removeHighScoreUI;
 	}
 
 	private void Start()
 	{
-		GameTimeManager.GameEndedEvent += HighScore;
-		GameTimeManager.GameStartedEvent += removeHighScoreUI;
+		EventCatalogue.GameEndedEvent += HighScore;
+		EventCatalogue.GameStartedEvent += removeHighScoreUI;
 	}
 
 	/// <summary>

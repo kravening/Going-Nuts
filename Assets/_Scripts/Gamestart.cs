@@ -19,12 +19,12 @@ public class Gamestart : SingletonBase<Gamestart>
 
         private void Start()
         {
-            GameTimeManager.GameEndedEvent += RestartGame;
+            EventCatalogue.GameEndedEvent += RestartGame;
         }
 
         private void OnDestroy()
         {
-            GameTimeManager.GameEndedEvent -= RestartGame;
+            EventCatalogue.GameEndedEvent -= RestartGame;
         }
 
     /// <summary>

@@ -59,14 +59,14 @@ public class TargetManager : SingletonBase<TargetManager>
 
     private void Start()
     {
-        GameTimeManager.GameStartedEvent += ResumeSpawning;
-        GameTimeManager.GameEndedEvent += PauseSpawning;
+        EventCatalogue.GameStartedEvent += ResumeSpawning;
+        EventCatalogue.GameEndedEvent += PauseSpawning;
     }
 
     private void OnDestroy()
     {
-        GameTimeManager.GameStartedEvent -= ResumeSpawning;
-        GameTimeManager.GameEndedEvent -= PauseSpawning;
+        EventCatalogue.GameStartedEvent -= ResumeSpawning;
+        EventCatalogue.GameEndedEvent -= PauseSpawning;
     }
 
     private void Update()
