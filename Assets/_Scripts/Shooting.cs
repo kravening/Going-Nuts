@@ -22,22 +22,13 @@ public class Shooting : MonoBehaviour
 
     private void Start()
     {
-        TouchInputManager.instance.SingleTouchEvent += Shoot;
+        EventCatalogue.SingleTouchEvent += Shoot;
         StartCoroutine(StartCooldown(_cooldown));
-        if (ProjectileManager.instance)
-        {
-            Debug.Log("instance found");
-        }
-
-        if (ProjectileManager.instance.GetProjectileFromQueue())
-        {
-            Debug.Log("projectile found");
-        }
     }
 
     private void OnDestroy()
     {
-        TouchInputManager.instance.SingleTouchEvent -= Shoot;
+        EventCatalogue.SingleTouchEvent -= Shoot;
     }
 
     /// <summary>

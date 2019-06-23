@@ -17,12 +17,12 @@ public class Highscore : SingletonBase<Highscore>
         _currentScore = 0;
 
         _keyHandler = new KeyHandler();
-        GameTimeManager.GameEndedEvent += SaveHighScore;
+        EventCatalogue.GameEndedEvent += SaveHighScore;
     }
 
     private void OnDestroy()
     {
-        GameTimeManager.GameEndedEvent -= SaveHighScore;
+        EventCatalogue.GameEndedEvent -= SaveHighScore;
     }
 
     /// <summary>

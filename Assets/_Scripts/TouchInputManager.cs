@@ -6,10 +6,6 @@
 public class TouchInputManager : SingletonBase<TouchInputManager>
 {
 
-    public delegate void SingleTouch();
-
-    public event SingleTouch SingleTouchEvent;
-
     // Update is called once per frame
     private void Update()
     {
@@ -28,7 +24,7 @@ public class TouchInputManager : SingletonBase<TouchInputManager>
                 // no input received, do nothing.
                 break;
             case 1:
-                SingleTouchEvent?.Invoke();
+                EventCatalogue.InvokeSingleTouchEvent();
                 break;
         }
     }
