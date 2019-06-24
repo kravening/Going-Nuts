@@ -12,6 +12,12 @@ public class SpriteDataManager : SingletonBase<SpriteDataManager>
     /// </summary>
     public List<Sprite> foodSpriteList = new List<Sprite>();
 
+
+    /// <summary>
+    /// returns a sprite based on an index given.
+    /// </summary>
+    /// <param name="index"></param>
+    /// <returns></returns>
     public Sprite GetFoodSpriteFromList(int index)
     {
         if (index > foodSpriteList?.Count)

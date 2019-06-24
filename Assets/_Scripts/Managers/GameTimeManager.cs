@@ -1,9 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-//TODO: kijk of er een timer class gemaakt kan worden.
-//TODO: consts waar zo nodig.
-
     /// <summary>
     /// This class is the manager for the in-game time
     /// </summary>

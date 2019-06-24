@@ -4,7 +4,14 @@
 
 public class Highscore : SingletonBase<Highscore>
 {
+    /// <summary>
+    /// holds te current score
+    /// </summary>
     private int _currentScore;
+
+    /// <summary>
+    /// a class to store and get data from the playerprefs
+    /// </summary>
     private KeyHandler _keyHandler;
 
 
