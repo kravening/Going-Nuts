@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
-
-//TODO: see if a timer class can be used here
 
 /// <summary>
 /// When this class is added to an object it will move straight forward in its set direction over time
@@ -11,13 +7,30 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Projectile : MonoBehaviour
 {
-    [SerializeField]private float _velocity = 20f;
-    [SerializeField]private float _destroyAfterSeconds = 2.5f;
+    /// <summary>
+    /// speed of the projectile
+    /// </summary>
+    [SerializeField] private float _velocity = 20f;
+
+    /// <summary>
+    /// time till object self destructs
+    /// </summary>
+    [SerializeField] private float _destroyAfterSeconds = 2.5f;
+
+    /// <summary>
+    /// references the rigidbody.
+    /// </summary>
     private Rigidbody _rb;
+
+    /// <summary>
+    /// references the sprite renderer
+    /// </summary>
     private SpriteRenderer _spriteRenderer;
+
+    /// <summary>
+    /// references an element, used for comparing against other elements. used as a way to refer to an ingredient type.
+    /// </summary>
     public ScriptableObjectElement ingredientType;
-
-
 
     private void Awake()
     {
@@ -43,13 +56,6 @@ public class Projectile : MonoBehaviour
         _rb?.AddForce(transform.forward * _velocity, ForceMode.Impulse);
     }
 
-    public void MoveTowardsPlayer()
-    {
-        _rb.velocity = Vector3.zero;
-        transform.LookAt(Camera.main.transform);
-        MoveProjectile();
-    }
-
     /// <summary>
     /// when this function gets called the projectile will be destroyed.
     /// </summary>
@@ -57,7 +63,7 @@ public class Projectile : MonoBehaviour
     {
         Destroy(this.gameObject);
     }
-    
+
     /// <summary>
     /// this routine keeps track of when the projectile needs to be destroyed, time wise.
     /// </summary>
@@ -67,11 +73,5 @@ public class Projectile : MonoBehaviour
     {
         yield return new WaitForSeconds(timeTillDestruction);
         DestroyProjectile();
-    }
-
-    public void ResetTimer()
-    {
-        StopCoroutine(DestroyProjectileTimer(_destroyAfterSeconds));
-        StartCoroutine(DestroyProjectileTimer(_destroyAfterSeconds));
     }
 }

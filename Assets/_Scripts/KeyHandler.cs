@@ -1,8 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
+/// <summary>
+/// Saves and stores data with playerprefs.
+/// </summary>
 public class KeyHandler
-{    
+{
     /// <summary>
     /// Sets the value of the given keyName depending on what type it is (string, int or float) and saves it to PlayerPrefs
     /// </summary>
@@ -41,7 +44,7 @@ public class KeyHandler
         {
             return PlayerPrefs.GetInt(keyName);
         }
-        else if (PlayerPrefs.GetFloat(keyName) != 0)
+        else if (Math.Abs(PlayerPrefs.GetFloat(keyName)) > 0)
         {
             return PlayerPrefs.GetFloat(keyName);
         }
@@ -52,7 +55,7 @@ public class KeyHandler
     }
 
     /// <summary>
-    /// Saves the PlayerPrefs
+    /// Saves the key in PlayerPrefs
     /// </summary>
     private void SaveKey()
     {

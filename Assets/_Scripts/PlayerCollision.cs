@@ -1,13 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-/// <summary>
+﻿/// <summary>
 /// This class handles the collision for the player
 /// </summary>
 public class PlayerCollision : CollisionElementComparer
 {
     /// <summary>
-    /// Takes care of the adding the score and removes the target that you hit
+    /// gets called when the correct element collides with this object. this function takes care of the adding the score and removing the colliding object.
     /// </summary>
     protected override void OnLegalElementFound()
     {
@@ -15,8 +12,11 @@ public class PlayerCollision : CollisionElementComparer
         Destroy(_lastElement.gameObject);
     }
 
+    /// <summary>
+    /// gets called when the wrong element collides with this object.
+    /// </summary>
     protected override void OnIllegalElementFound()
     {
-        //nothing
+        //do nothing
     }
 }

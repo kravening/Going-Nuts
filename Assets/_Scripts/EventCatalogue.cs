@@ -56,7 +56,7 @@ public static class EventCatalogue
         GamePausedEvent.Invoke();
     }
 
-   
+
     public delegate void GameResumed();
     /// <summary>
     /// an event signaling the game has resumed
@@ -86,22 +86,22 @@ public static class EventCatalogue
     #endregion
 
     #region UiElementEvents
-    public delegate void  SetScore(int score);
+    public delegate void SetScore(int score);
 
     /// <summary>
     /// an event telling when the score gets updated.
     /// </summary>
     public static event SetScore UpdateScoreEvent;
-    
+
     /// <summary>
     /// invokes updatescoreevent
     /// </summary>
     /// <param name="score"></param>
     public static void OnUpdateScoreEvent(int score)
     {
-       UpdateScoreEvent?.Invoke(score);
+        UpdateScoreEvent?.Invoke(score);
     }
-    
+
     public delegate void SetHighScore(int highscore);
 
     /// <summary>
@@ -129,7 +129,7 @@ public static class EventCatalogue
     /// </summary>
     public static void OnUpdateTimer(int timer)
     {
-       UpdateTimer?.Invoke(timer);
+        UpdateTimer?.Invoke(timer);
     }
     #endregion
 }

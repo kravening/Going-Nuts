@@ -5,8 +5,9 @@
 /// </summary>
 public class TouchInputManager : SingletonBase<TouchInputManager>
 {
-
-    // Update is called once per frame
+    /// <summary>
+    /// check per frame for touch input.
+    /// </summary>
     private void Update()
     {
         CheckInput();

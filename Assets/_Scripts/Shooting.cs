@@ -6,8 +6,19 @@ using UnityEngine;
 /// </summary>
 public class Shooting : MonoBehaviour
 {
+    /// <summary>
+    /// references the main camera
+    /// </summary>
     public Camera _arCamera;
-    [SerializeField]private float _cooldown = 0.8f;
+
+    /// <summary>
+    /// cooldown for the shot projectiles
+    /// </summary>
+    [SerializeField] private float _cooldown = 0.8f;
+
+    /// <summary>
+    /// if this is true the cooldown has passed, and the user can shoot a projectile.
+    /// </summary>
     private bool _canShoot;
 
     private void Awake()
@@ -36,7 +47,7 @@ public class Shooting : MonoBehaviour
     /// </summary>
     private void Shoot()
     {
-        if (_canShoot)  
+        if (_canShoot)
         {
             GameObject bullet = Instantiate(IngredientManager.instance.GetProjectileFromQueue(), _arCamera.transform.position + (_arCamera.transform.forward * 1), _arCamera.transform.rotation);
             bullet.transform.parent = this.transform;
@@ -58,5 +69,5 @@ public class Shooting : MonoBehaviour
         yield return new WaitForSeconds(cooldownTime);
         _canShoot = true;
     }
-    
+
 }

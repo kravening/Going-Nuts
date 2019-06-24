@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
-
 
 /// <summary>
 /// this class makes a queue out of your desired dataType, allowing you to get and add new elements in order.

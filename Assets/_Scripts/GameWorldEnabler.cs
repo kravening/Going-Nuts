@@ -1,7 +1,13 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// 'enables' or 'disables' the game world based on tracking state
+/// </summary>
 public class GameWorldEnabler : DefaultTrackableEventHandler
 {
+    /// <summary>
+    /// reference to the gameworld that needs to be moved
+    /// </summary>
     public GameObject gameWorld;
 
 

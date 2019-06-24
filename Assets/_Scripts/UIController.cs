@@ -9,62 +9,63 @@ using UnityEngine;
 
 public class UIController : SingletonBase<UIController>
 {
-	/// <summary>
-	/// Gets the TextMeshProGui from the scene.
-	/// </summary>
-	[SerializeField] private TextMeshProUGUI[] textItems;
-	[SerializeField] private GameObject highScoreUi;
-	private int scoreText;
+    /// <summary>
+    /// Gets the TextMeshProGui from the scene.
+    /// </summary>
+    [SerializeField] private TextMeshProUGUI[] textItems;
+    [SerializeField] private GameObject highScoreUi;
+    private int scoreText;
 
 
-	/// <summary>
-	/// Subscribe
-	/// </summary>
-
-
-	private void Start()
-	{
-		EventCatalogue.GameEndedEvent += HighScore;
-		EventCatalogue.GameStartedEvent += removeHighScoreUI;
-	}	
-	/// <summary>
-	/// 
-	/// </summary>
-	private void OnDestroy()
+    /// <summary>
+    /// Subscribe
+    /// </summary>
+    private void Start()
     {
-    	EventCatalogue.GameEndedEvent -= HighScore;
-    	EventCatalogue.GameStartedEvent -= removeHighScoreUI;
+        EventCatalogue.GameEndedEvent += HighScore;
+        EventCatalogue.GameStartedEvent += DisableHighScoreUI;
+    }
+    /// <summary>
+    /// unsubscribes
+    /// </summary>
+    private void OnDestroy()
+    {
+        EventCatalogue.GameEndedEvent -= HighScore;
+        EventCatalogue.GameStartedEvent -= DisableHighScoreUI;
     }
 
-	/// <summary>
-	/// Updates the score UI inside the game
-	/// </summary>
-	/// <param name="score"></param>
-	public void UpdateScoreUi(int score)
-	{
-		scoreText = score;
-		textItems[0].text = score.ToString();
-	}
-	/// <summary>
-	/// 
-	/// </summary>
-	private void removeHighScoreUI()
-	{
-		highScoreUi.SetActive(false);
-	}
+    /// <summary>
+    /// Updates the score UI inside the game
+    /// </summary>
+    /// <param name="score"></param>
+    public void UpdateScoreUi(int score)
+    {
+        scoreText = score;
+        textItems[0].text = score.ToString();
+    }
+    /// <summary>
+    /// disables highscore ui
+    /// </summary>
+    private void DisableHighScoreUI()
+    {
+        highScoreUi.SetActive(false);
+    }
 
+    /// <summary>
+    /// enables highscore ui
+    /// </summary>
 	private void HighScore()
-	{
-		highScoreUi.SetActive(true);
-		textItems[2].text = scoreText.ToString();
-	}
+    {
+        highScoreUi.SetActive(true);
+        textItems[2].text = scoreText.ToString();
+    }
 
-	/// <summary>
-	/// Updates the timer UI inside the game
-	/// </summary>
-	/// <param name="timer"></param>
-	public void TimerUi(int timer)
-	{
-		textItems[1].text = timer.ToString();
-	}
+    /// <summary>
+    /// Updates the timer UI inside the game
+    /// </summary>
+    /// <param name="timer"></param>
+    public void TimerUi(int timer)
+    {
+        textItems[1].text = timer.ToString();
+    }
 }

@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-/// <summary>
+﻿/// <summary>
 /// This class handles the incoming collisions of the targets
 /// </summary>
 public class TargetCollision : CollisionElementComparer
 {
-
+    /// <summary>
+    /// references the target controller on the game object this class is on
+    /// </summary>
     private TargetController _targetController;
 
     private void Awake()
@@ -15,16 +13,20 @@ public class TargetCollision : CollisionElementComparer
         _targetController = gameObject.GetComponent<TargetController>();
     }
 
+    /// <summary>
+    /// comparison succeeded, in this case an object with the right element is colliding
+    /// </summary>
     protected override void OnLegalElementFound()
     {
-        Debug.Log("legal collision");
         EatIngredient();
         Destroy(_lastElement.gameObject);
     }
 
+    /// <summary>
+    /// comparison succeeded, but in this case an object with the wrong element is colliding
+    /// </summary>
     protected override void OnIllegalElementFound()
     {
-        Debug.Log("illegal collision");
         Projectile collidingProjectile = _lastElement?.gameObject?.GetComponent<Projectile>();
         if (collidingProjectile)
         {
@@ -39,6 +41,11 @@ public class TargetCollision : CollisionElementComparer
     {
         _targetController?.EatIngredient();
     }
+
+    /// <summary>
+    /// when the colliding element is of the wrong type, throw it.
+    /// </summary>
+    /// <param name="ingredient"></param>
 
     private void ThrowIngredient(Projectile ingredient)
     {

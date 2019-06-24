@@ -33,5 +33,5 @@ public class DisplayTargetIngredient : MonoBehaviour
         Sprite food = SpriteDataManager.instance.GetFoodSpriteFromList(IngredientTypeRegister.instance.GetIngredientIndex(_targetController._preferredFoodType));
         _ingredientSprite.sprite = food;
     }
-    
+
 }
