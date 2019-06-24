@@ -7,36 +7,46 @@ using UnityEngine.Serialization;
 
 public class GameStartManager : SingletonBase<GameStartManager>
 {
-        [SerializeField ]private GameObject gameStartCharacter;
-        private void Start()
-        {
-            EventCatalogue.GameEndedEvent += RestartGame;
-        }
+    /// <summary>
+    /// a reference to the object that needs to be disabled
+    /// </summary>
+    [SerializeField] private GameObject gameStartCharacter;
 
-        private void OnDestroy()
-        {
-            EventCatalogue.GameEndedEvent -= RestartGame;
-        }
-        /// <summary>
-        /// Als de 
-        /// </summary>
-        /// <param name="collision"></param>
-        private void OnCollisionEnter(Collision collision)
-        {
-            if (collision.gameObject.CompareTag("Nut"))
-            {
-                GameStart();
-            }
-        }
+    private void Start()
+    {
+        EventCatalogue.GameEndedEvent += RestartGame;
+    }
 
-        private void RestartGame()
+    private void OnDestroy()
+    {
+        EventCatalogue.GameEndedEvent -= RestartGame;
+    }
+    /// <summary>
+    /// Als de 
+    /// </summary>
+    /// <param name="collision"></param>
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Nut"))
         {
-            gameStartCharacter.SetActive(true);
+            GameStart();
         }
+    }
 
-        private void GameStart()
-        {
-            gameStartCharacter.SetActive(false);
-            GameTimeManager.instance.StartGame();
-        }
+    /// <summary>
+    /// enables the gamecharacter gameObject, allowing for the game to restart
+    /// </summary>
+    private void RestartGame()
+    {
+        gameStartCharacter.SetActive(true);
+    }
+
+    /// <summary>
+    /// disaables the referenced character gameobject and calls the stargame function in the gametimemanager instance.
+    /// </summary>
+    private void GameStart()
+    {
+        gameStartCharacter.SetActive(false);
+        GameTimeManager.instance.StartGame();
+    }
 }

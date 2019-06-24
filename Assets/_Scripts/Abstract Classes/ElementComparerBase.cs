@@ -7,8 +7,14 @@ using UnityEngine;
 /// </summary>
 public abstract class ElementComparerBase : MonoBehaviour
 {
+    /// <summary>
+    /// elements to compare against
+    /// </summary>
     [SerializeField] protected List<ScriptableObject> _elementsRegister;
 
+    /// <summary>
+    /// stores the last compared element
+    /// </summary>
     protected ScriptableObjectElement _lastElement;
 
     /// <summary>

@@ -1,10 +1,23 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// this class queues ingredients and gives the projectile a corresponding ingredient based on the first order in the ingredient queue.
+/// </summary>
 public class IngredientManager : SingletonBase<IngredientManager>
 {
-    public Projectile projectile;// all the projectile objects available
-    public GenericQueue<ScriptableObject> ingredientQueue = new GenericQueue<ScriptableObject>(); // queue for next projectile
+    /// <summary>
+    /// reference to the projectile prefab
+    /// </summary>
+    public Projectile projectile;
 
+    /// <summary>
+    /// e queue of ingredients
+    /// </summary>
+    public GenericQueue<ScriptableObject> ingredientQueue = new GenericQueue<ScriptableObject>();
+
+    /// <summary>
+    /// the maximum size of the queue
+    /// </summary>
     private int _queueSize = 4;
 
     private void Start()

@@ -5,8 +5,15 @@
 /// </summary>
 public class DisplayTargetIngredient : MonoBehaviour
 {
-    public SpriteRenderer _ingredientSprite; // sprite for the ingredient
-    private TargetController _targetController; // reference to target controller
+    /// <summary>
+    /// the renderer of the ingredient display.
+    /// </summary>
+    public SpriteRenderer _ingredientSprite;
+
+    /// <summary>
+    /// references the target controller that pairs with this class
+    /// </summary>
+    private TargetController _targetController;
 
     private void Awake()
     {
