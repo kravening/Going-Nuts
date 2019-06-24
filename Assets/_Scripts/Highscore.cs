@@ -2,9 +2,6 @@
 /// This singleton handles the highscore and current scoring data of the game.
 /// </summary>
 
-//TODO: zet save functionaliteiten in een nieuwe class.
-//TODO: check benamingen.
-
 public class Highscore : SingletonBase<Highscore>
 {
     private int _currentScore;

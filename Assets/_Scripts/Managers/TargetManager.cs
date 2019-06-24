@@ -56,13 +56,18 @@ public class TargetManager : SingletonBase<TargetManager>
             _maxTargetsShowing = targets.Count;
         }
     }
-
+    /// <summary>
+    /// subcribes Resumes spawning om het GamestartEvent
+    /// Subcribes het PauseSpawning op het GameEndedEvent
+    /// </summary>
     private void Start()
     {
         EventCatalogue.GameStartedEvent += ResumeSpawning;
         EventCatalogue.GameEndedEvent += PauseSpawning;
     }
-
+    /// <summary>
+    /// Unsubscribes all the subcribed events in dit script
+    /// </summary>
     private void OnDestroy()
     {
         EventCatalogue.GameStartedEvent -= ResumeSpawning;
