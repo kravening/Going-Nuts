@@ -11,7 +11,7 @@ public class ScoreUi : Textbase
 		EventCatalogue.UpdateScoreEvent += UpdateText;
 	}
 	/// <summary>
-	/// Subscribes Update text die in Text base staat op Het UpdatescoreEvent
+	/// Unsubcribes Update text on UpdateScoreEvent
 	/// </summary>
 	private void OnDestroy()
 	{
