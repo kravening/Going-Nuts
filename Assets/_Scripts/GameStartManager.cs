@@ -7,33 +7,21 @@
 
 public class GameStartManager : SingletonBase<GameStartManager>
 //TODO: deel deze class op.
-    {
+    {    
         /// <summary>
-        /// get the props gameobjects to be used for setactive
+        /// gets the animator
         /// </summary>
-        [SerializeField] private GameObject[] props;
-      
-        private void OnDestroy()
-        {
-            GameTimeManager.GameEndedEvent -= RestartGame;
-        }
+        [SerializeField] public Animator treeFlipAnimator;
 
         private void Start()
         {
-            GameTimeManager.GameEndedEvent += RestartGame;
+            EventCatalogue.GameEndedEvent += RestartGame;
         }
 
-        #if UNITY_EDITOR
-        private void Update()
+        private void OnDestroy()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                      
-                props[0]?.SetActive(false);
-                GameStart();
-            }
+            EventCatalogue.GameEndedEvent -= RestartGame;
         }
-        #endif
 
         private void OnCollisionEnter(Collision collision)
         {
@@ -45,12 +33,11 @@ public class GameStartManager : SingletonBase<GameStartManager>
 
         private void RestartGame()
         {
-            props[0]?.SetActive(true);
+            
         }
 
         private void GameStart()
         {
-            props[0]?.SetActive(false);
             GameTimeManager.instance.StartGame();
         }
     }

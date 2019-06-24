@@ -7,11 +7,9 @@ using UnityEngine;
 public class ProjectileManager : SingletonBase<ProjectileManager>
 {
     public Projectile projectile;// all the projectile objects available
-    public List<FoodEnums.FoodType> foodTypeQueue =  new List<FoodEnums.FoodType>(); // queue for next projectile
+    public List<ScriptableObject> ingredientQueue =  new List<ScriptableObject>(); // queue for next projectile
 
     private int _queueSize = 4;
-
-    public static ProjectileManager instance;
 
     protected override void Awake()
     {
@@ -35,8 +33,7 @@ public class ProjectileManager : SingletonBase<ProjectileManager>
     /// </summary>
     private void QueueNewFoodType()
     {
-        //add it to the queue
-        foodTypeQueue.Add(FoodEnums.GetRandomFood());
+        ingredientQueue.Add(IngredientTypeRegister.instance.GetRandomIngredient());
     }
 
     /// <summary>
@@ -45,25 +42,25 @@ public class ProjectileManager : SingletonBase<ProjectileManager>
     /// <returns></returns>
     public GameObject GetProjectileFromQueue()
     {
-        projectile.foodType = foodTypeQueue[0];
+        projectile.ingredientType.element = ingredientQueue[0];
         GameObject projectileToShoot = projectile.gameObject;
 
-        foodTypeQueue.RemoveAt(0);
+        ingredientQueue.RemoveAt(0);
         QueueNewFoodType();
         return projectileToShoot;
     }
 
-    public FoodEnums.FoodType GetFoodEnumFromIndex(int index)
+    public ScriptableObject GetIngredientTypeFromIndex(int index)
     {
-        return foodTypeQueue[index];
+        return ingredientQueue[index];
     }
     
-    public Projectile GetProjectileWithSetIngredientType(FoodEnums.FoodType ingredientType)
+    public Projectile GetProjectileWithSetIngredientType(ScriptableObject ingredientType)
     {
-        foodTypeQueue.Add(ingredientType);
-        projectile.foodType = foodTypeQueue[foodTypeQueue.Count - 1];
+        ingredientQueue.Add(ingredientType);
+        projectile.ingredientType.element = ingredientQueue[ingredientQueue.Count - 1];
         Projectile newProjectile = projectile;
-        foodTypeQueue.RemoveAt(foodTypeQueue.Count - 1);
+        ingredientQueue.RemoveAt(ingredientQueue.Count - 1);
 
         return newProjectile;
     }

@@ -9,13 +9,13 @@ public class HighScoreUi : MonoBehaviour
    private void Start()
    {
       Highscore.SetHighScoreUiEvent += SetHighScoreUiActive;
-      GameTimeManager.GameStartedEvent += SetHighScoreUiNotActive;
+      EventCatalogue.GameStartedEvent += SetHighScoreUiNotActive;
    }
 
    private void OnDestroy()
    {
       Highscore.SetHighScoreUiEvent -= SetHighScoreUiActive;
-      GameTimeManager.GameStartedEvent -= SetHighScoreUiNotActive;
+      EventCatalogue.GameStartedEvent -= SetHighScoreUiNotActive;
    }
 
    private void SetHighScoreUiActive(int highscore)

@@ -23,7 +23,7 @@ public class DisplayTargetIngredient : MonoBehaviour
     /// </summary>
     public void DisplayIngredient()//TODO: kan deze functie private zijn?
     {
-        Sprite food = SpriteDataManager.instance.GetFoodSpriteFromList((int) _targetController.GetPreferredFoodType());
+        Sprite food = SpriteDataManager.instance.GetFoodSpriteFromList(IngredientTypeRegister.instance.GetIngredientIndex(_targetController._preferredFoodType));
         _ingredientSprite.sprite = food;
     }
     

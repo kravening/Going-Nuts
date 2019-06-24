@@ -8,35 +8,7 @@ using UnityEngine;
     /// This class is the manager for the in-game time
     /// </summary>
     public class GameTimeManager : SingletonBase<GameTimeManager>
-    {
-        /// <summary>
-        /// an event signaling the game has started
-        /// </summary>
-        public delegate void GameStarted();
-
-        public static event GameStarted GameStartedEvent;
-
-        /// <summary>
-        /// an event signaling the game has paused
-        /// </summary>
-        public delegate void GamePaused();
-
-        public static event GamePaused GamePausedEvent;
-
-        /// <summary>
-        /// an event signaling the game has resumed
-        /// </summary>
-        public delegate void GameResumed();
-
-        public static event GamePaused GameResumedEvent;
-
-        /// <summary>
-        /// an event signaling the game has ended
-        /// </summary>
-        public delegate void GameEnded();
-
-        public static event GameEnded GameEndedEvent;
-        
+    {        
         public delegate void SetTimer(int timer);
 
         public static event SetTimer UpdateTimer;
@@ -58,7 +30,7 @@ using UnityEngine;
         {
             //resets round time.
             currentTime = _roundTime;
-            GameStartedEvent.Invoke();
+            EventCatalogue.InvokeGameStartedEvent();
             StartCoroutine(GameTimer());
         }
 
@@ -68,7 +40,7 @@ using UnityEngine;
         public void PauseGame()
         {
             Time.timeScale = 0;
-            GamePausedEvent.Invoke();
+            EventCatalogue.InvokeGamePausedEvent();
         }
 
         /// <summary>
@@ -77,7 +49,15 @@ using UnityEngine;
         public void ResumeGame()
         {
             Time.timeScale = 1;
-            GameResumedEvent.Invoke();
+            EventCatalogue.InvokeGameResumedEvent();
+        }
+
+        /// <summary>
+        /// This function calls the event that ends the game.
+        /// </summary>
+        private void EndGame()
+        {
+            EventCatalogue.InvokeGameEndedEvent();
         }
 
         /// <summary>
@@ -86,7 +66,7 @@ using UnityEngine;
         /// <returns></returns>
         private IEnumerator GameTimer()
         {
-            
+
             while (currentTime > 0)
             {
                 UpdateTimer?.Invoke((int)currentTime);
@@ -95,16 +75,9 @@ using UnityEngine;
             }
             
             UpdateTimer?.Invoke(0);
-            
+
             yield return new WaitForSeconds(0);
 
             EndGame();
         }
-        /// <summary>
-        /// This function calls the event that ends the game.
-        /// </summary>
-        private void EndGame()
-        {
-            GameEndedEvent.Invoke();
-        }
-    }
+}

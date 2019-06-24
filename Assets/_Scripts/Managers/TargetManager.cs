@@ -59,8 +59,14 @@ public class TargetManager : SingletonBase<TargetManager>
 
     private void Start()
     {
-        GameTimeManager.GameStartedEvent += ResumeSpawning;
-        GameTimeManager.GameEndedEvent += PauseSpawning;
+        EventCatalogue.GameStartedEvent += ResumeSpawning;
+        EventCatalogue.GameEndedEvent += PauseSpawning;
+    }
+
+    private void OnDestroy()
+    {
+        EventCatalogue.GameStartedEvent -= ResumeSpawning;
+        EventCatalogue.GameEndedEvent -= PauseSpawning;
     }
 
     private void Update()
@@ -104,7 +110,6 @@ public class TargetManager : SingletonBase<TargetManager>
         if (_currentShowingTargets >= _maxTargetsShowing)
         {
             return;
-            ;
         }
 
         ShowNewTarget();
@@ -117,7 +122,6 @@ public class TargetManager : SingletonBase<TargetManager>
     private void ShowNewTarget()
     {
         int randomIndex = Random.Range(0, targets.Count);
-        Debug.Log(randomIndex);
         targets[randomIndex].Show();
     }
 
