@@ -21,7 +21,10 @@ public class GameStartManager : SingletonBase<GameStartManager>
         {
             EventCatalogue.GameEndedEvent -= RestartGame;
         }
-
+        /// <summary>
+        /// Als de 
+        /// </summary>
+        /// <param name="collision"></param>
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.CompareTag("Nut"))

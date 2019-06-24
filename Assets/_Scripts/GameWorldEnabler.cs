@@ -7,12 +7,13 @@ public class GameWorldEnabler : DefaultTrackableEventHandler
     protected override void OnTrackingFound()
     {
         base.OnTrackingFound();
-        gameWorld.SetActive(true);
+        Time.timeScale = 1;
     }
 
     protected override void OnTrackingLost()
     {
         base.OnTrackingLost();
-        gameWorld.SetActive(false);
+        transform.position = new Vector3(-9999, -9999, -9999);
+        Time.timeScale = 0;
     }
 }
