@@ -102,7 +102,7 @@ public class TargetController : MonoBehaviour
     /// <returns></returns>
     private IEnumerator ThrowIngredientRoutine(Projectile incomingIngredient)
     { 
-        Projectile newProjectile = ProjectileManager.instance.GetProjectileWithSetIngredientType(incomingIngredient.ingredientType.element);
+        Projectile newProjectile = IngredientManager.instance.GetProjectileWithSetIngredientType(incomingIngredient.ingredientType.element);
         newProjectile.transform.position = incomingIngredient.transform.position;
         newProjectile.transform.LookAt(Camera.main.transform);
 
