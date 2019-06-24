@@ -1,20 +1,20 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-/// <summary>
-/// This class takes track of which projectile is next in the queue to shoot.
-/// </summary>
-public class ProjectileManager : SingletonBase<ProjectileManager>
+public class IngredientManager : SingletonBase<IngredientManager>
 {
     public Projectile projectile;// all the projectile objects available
-    public List<ScriptableObject> ingredientQueue =  new List<ScriptableObject>(); // queue for next projectile
+    public GenericQueue<ScriptableObject> ingredientQueue = new GenericQueue<ScriptableObject>(); // queue for next projectile
 
     private int _queueSize = 4;
+
+    private void Start()
+    {
+        InitializeProjectileQueue();
+    }
 
     protected override void Awake()
     {
         base.Awake();
-        InitializeProjectileQueue();
     }
 
     /// <summary>
@@ -27,13 +27,13 @@ public class ProjectileManager : SingletonBase<ProjectileManager>
             QueueNewFoodType();
         }
     }
-    
+
     /// <summary>
     /// this function adds a new projectile to the queue, picked randomly from the possible types of projectile.
     /// </summary>
     private void QueueNewFoodType()
     {
-        ingredientQueue.Add(IngredientTypeRegister.instance.GetRandomIngredient());
+        ingredientQueue.QueueNewGeneric(IngredientTypeRegister.instance.GetRandomIngredient());
     }
 
     /// <summary>
@@ -42,25 +42,25 @@ public class ProjectileManager : SingletonBase<ProjectileManager>
     /// <returns></returns>
     public GameObject GetProjectileFromQueue()
     {
-        projectile.ingredientType.element = ingredientQueue[0];
+        projectile.ingredientType.element = ingredientQueue.GetGenericFromQueue(0);
         GameObject projectileToShoot = projectile.gameObject;
 
-        ingredientQueue.RemoveAt(0);
+        ingredientQueue.RemoveFromQueue(0);
         QueueNewFoodType();
         return projectileToShoot;
     }
 
     public ScriptableObject GetIngredientTypeFromIndex(int index)
     {
-        return ingredientQueue[index];
+        return ingredientQueue.GetGenericFromQueue(index);
     }
-    
+
     public Projectile GetProjectileWithSetIngredientType(ScriptableObject ingredientType)
     {
-        ingredientQueue.Add(ingredientType);
-        projectile.ingredientType.element = ingredientQueue[ingredientQueue.Count - 1];
+        ingredientQueue.QueueNewGeneric(ingredientType);
+        projectile.ingredientType.element = ingredientQueue.queue[ingredientQueue.queue.Count - 1];
         Projectile newProjectile = projectile;
-        ingredientQueue.RemoveAt(ingredientQueue.Count - 1);
+        ingredientQueue.RemoveFromQueue(ingredientQueue.queue.Count - 1);
 
         return newProjectile;
     }

@@ -38,10 +38,10 @@ public class Shooting : MonoBehaviour
     {
         if (_canShoot)  
         {
-            GameObject bullet = Instantiate(ProjectileManager.instance.GetProjectileFromQueue(), _arCamera.transform.position + (_arCamera.transform.forward * 1), _arCamera.transform.rotation);
+            GameObject bullet = Instantiate(IngredientManager.instance.GetProjectileFromQueue(), _arCamera.transform.position + (_arCamera.transform.forward * 1), _arCamera.transform.rotation);
             bullet.transform.parent = this.transform;
 
-            DisplayPlayerIngredient.instance.DisplayNextIngredient(ProjectileManager.instance.GetIngredientTypeFromIndex(0));
+            DisplayPlayerIngredient.instance.DisplayNextIngredient(IngredientManager.instance.GetIngredientTypeFromIndex(0));
 
             StartCoroutine(StartCooldown(_cooldown));
         }
