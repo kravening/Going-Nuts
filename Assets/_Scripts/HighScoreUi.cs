@@ -3,21 +3,18 @@ using UnityEngine;
 
 public class HighScoreUi : MonoBehaviour
 {   
-   public delegate void SetHighScore(int score);
-   public static event SetHighScore SetHighScoreUiEvent;
-   
    [SerializeField] private TextMeshProUGUI textItem;
    [SerializeField] private GameObject highScoreUi;
 
    private void Start()
    {
-      SetHighScoreUiEvent += SetHighScoreUiActive;
+      Highscore.SetHighScoreUiEvent += SetHighScoreUiActive;
       GameTimeManager.GameStartedEvent += SetHighScoreUiNotActive;
    }
 
    private void OnDestroy()
    {
-      SetHighScoreUiEvent -= SetHighScoreUiActive;
+      Highscore.SetHighScoreUiEvent -= SetHighScoreUiActive;
       GameTimeManager.GameStartedEvent -= SetHighScoreUiNotActive;
    }
 

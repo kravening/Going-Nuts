@@ -1,22 +1,16 @@
 ﻿using TMPro;
 using UnityEngine;
 
-public class ScoreUi : MonoBehaviour
+public class ScoreUi : Textbase
 {
-	[SerializeField]private TextMeshProUGUI textItem;
 
 	private void Start()
 	{
-		Highscore.UpdateScoreEvent += UpdateScoreUi;
+		Highscore.UpdateScoreEvent += UpdateText;
 	}
 
 	private void OnDestroy()
 	{
-		Highscore.UpdateScoreEvent -= UpdateScoreUi;
+		Highscore.UpdateScoreEvent -= UpdateText;
 	}
-
-	private void UpdateScoreUi(int score)
-	{
-		textItem.text = score.ToString();
-	} 
 }

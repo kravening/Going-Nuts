@@ -1,22 +1,15 @@
 ﻿using TMPro;
 using UnityEngine;
 
-public class TimerUi : MonoBehaviour
-{  
-	[SerializeField] private TextMeshProUGUI textItems;
-
+public class TimerUi : Textbase
+{
 	private void Start()
 	{
-		GameTimeManager.UpdateTimer += SetTimerUi;
+		GameTimeManager.UpdateTimer += UpdateText;
 	}
 
 	private void OnDestroy()
 	{
-		GameTimeManager.UpdateTimer -= SetTimerUi;
-	}
-
-	private void SetTimerUi(int timer)
-	{
-		textItems.text = timer.ToString();
+		GameTimeManager.UpdateTimer -= UpdateText;
 	}
 }
