@@ -77,4 +77,29 @@ public static class EventCatalogue
         GameEndedEvent.Invoke();
     }
     #endregion
+
+    #region UiElementEvents
+    public delegate void  SetScore(int score);
+    public static event SetScore UpdateScoreEvent;
+    
+    public static void OnUpdateScoreEvent(int score)
+    {
+       UpdateScoreEvent?.Invoke(score);
+    }
+    
+    public delegate void SetHighScore(int highscore);
+    public static event SetHighScore SetHighScoreUiEvent;
+    
+    public static void OnSetHighScoreUiEvent(int highscore)
+    {
+        SetHighScoreUiEvent?.Invoke(highscore);
+    }
+    public delegate void SetTimer(int timer);
+    public static event SetTimer UpdateTimer;
+    
+    public static void OnUpdateTimer(int timer)
+    {
+       UpdateTimer?.Invoke(timer);
+    }
+    #endregion
 }

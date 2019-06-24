@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
+
 /// <summary>
 /// This class starts the game
 /// </summary>
@@ -7,12 +9,9 @@
 
 public class GameStartManager : SingletonBase<GameStartManager>
 //TODO: deel deze class op.
-    {    
-        /// <summary>
-        /// gets the animator
-        /// </summary>
-        [SerializeField] public Animator treeFlipAnimator;
+{
 
+        [SerializeField ]private GameObject gameStartCharacter;
         private void Start()
         {
             EventCatalogue.GameEndedEvent += RestartGame;
@@ -33,11 +32,12 @@ public class GameStartManager : SingletonBase<GameStartManager>
 
         private void RestartGame()
         {
-            
+            gameStartCharacter.SetActive(true);
         }
 
         private void GameStart()
         {
+            gameStartCharacter.SetActive(false);
             GameTimeManager.instance.StartGame();
         }
-    }
+}

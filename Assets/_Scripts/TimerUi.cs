@@ -5,11 +5,11 @@ public class TimerUi : Textbase
 {
 	private void Start()
 	{
-		GameTimeManager.UpdateTimer += UpdateText;
+		EventCatalogue.UpdateTimer += UpdateText;
 	}
 
 	private void OnDestroy()
 	{
-		GameTimeManager.UpdateTimer -= UpdateText;
+		EventCatalogue.UpdateTimer -= UpdateText;
 	}
 }

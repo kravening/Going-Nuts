@@ -8,11 +8,7 @@ using UnityEngine;
     /// This class is the manager for the in-game time
     /// </summary>
     public class GameTimeManager : SingletonBase<GameTimeManager>
-    {        
-        public delegate void SetTimer(int timer);
-
-        public static event SetTimer UpdateTimer;
-
+    {       
         /// <summary>
         /// current time of the game round
         /// </summary>
@@ -69,12 +65,12 @@ using UnityEngine;
 
             while (currentTime > 0)
             {
-                UpdateTimer?.Invoke((int)currentTime);
                 currentTime -= Time.deltaTime;
+                EventCatalogue.OnUpdateTimer((int)currentTime);
                 yield return new WaitForSeconds(0);
             }
             
-            UpdateTimer?.Invoke(0);
+            EventCatalogue.OnUpdateTimer(0);
 
             yield return new WaitForSeconds(0);
 
