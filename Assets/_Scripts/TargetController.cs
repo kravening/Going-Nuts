@@ -7,16 +7,25 @@ using UnityEngine;
 /// </summary>
 public class TargetController : MonoBehaviour
 {
-    // this is a reference to the treerufflebehaviour on the inhabitants tree.
-    [SerializeField]private TreeRuffleBehaviour treeRuffleBehaviour;
+    /// <summary>
+    /// this is a reference to the treerufflebehaviour on the inhabitants tree.
+    /// </summary>
+    [SerializeField] private TreeRuffleBehaviour treeRuffleBehaviour;
 
-    // these booleans are use to keep track of the state of the target
+    /// <summary>
+    /// these booleans are use to keep track of the state of the target
+    /// </summary>
     private bool _isTargetHidden = true;
     private bool _isHiding = false;
 
-    // this is a reference to the animator component on this object
+    /// <summary>
+    /// this is a reference to the animator component on this object
+    /// </summary>
     private Animator _animator;
 
+    /// <summary>
+    /// references the foodType this target would like to eat
+    /// </summary>
     public ScriptableObject _preferredFoodType;
 
     private bool _justAte = false;
@@ -101,7 +110,7 @@ public class TargetController : MonoBehaviour
     /// <param name="incomingIngredient"></param>
     /// <returns></returns>
     private IEnumerator ThrowIngredientRoutine(Projectile incomingIngredient)
-    { 
+    {
         Projectile newProjectile = IngredientManager.instance.GetProjectileWithSetIngredientType(incomingIngredient.ingredientType.element);
         newProjectile.transform.position = incomingIngredient.transform.position;
         newProjectile.transform.LookAt(Camera.main.transform);

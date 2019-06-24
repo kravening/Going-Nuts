@@ -1,20 +1,23 @@
 ﻿/// <summary>
 /// This singleton handles the highscore and current scoring data of the game.
 /// </summary>
-
-//TODO: zet save functionaliteiten in een nieuwe class.
-//TODO: check benamingen.
-
 public class Highscore : SingletonBase<Highscore>
 {
+    /// <summary>
+    /// holds te current score
+    /// </summary>
     private int _currentScore;
+
+    /// <summary>
+    /// a class to store and get data from the playerprefs
+    /// </summary>
     private KeyHandler _keyHandler;
 
 
     protected override void Awake()
     {
         base.Awake();
-    
+
         _currentScore = 0;
 
         _keyHandler = new KeyHandler();
@@ -36,7 +39,7 @@ public class Highscore : SingletonBase<Highscore>
         _currentScore += incrementValue;
         EventCatalogue.OnSetHighScoreUiEvent(_currentScore);
     }
-    
+
     /// <summary>
     /// Decrements _currentScore
     /// </summary>
@@ -44,7 +47,7 @@ public class Highscore : SingletonBase<Highscore>
     public void DecrementScore(int decrementValue)
     {
         _currentScore -= decrementValue;
-       EventCatalogue.OnUpdateScoreEvent(_currentScore);
+        EventCatalogue.OnUpdateScoreEvent(_currentScore);
     }
 
     /// <summary>

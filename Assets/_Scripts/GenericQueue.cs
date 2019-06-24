@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 
+/// <summary>
+/// this class makes a queue out of your desired dataType, allowing you to get and add new elements in order.
+/// </summary>
+/// <typeparam name="T"></typeparam>
 public class GenericQueue<T>
 {
     public List<T> queue = new List<T>(); // Generic queue list

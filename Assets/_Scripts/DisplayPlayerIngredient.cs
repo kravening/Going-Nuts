@@ -6,6 +6,9 @@ using UnityEngine.UI;
 /// </summary>
 public class DisplayPlayerIngredient : SingletonBase<DisplayPlayerIngredient>
 {
+    /// <summary>
+    /// an image variable holding the next ingredient that will be shot by the player.
+    /// </summary>
     public Image nextPlayerIngredient;
 
     /// <summary>
