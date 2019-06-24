@@ -5,12 +5,8 @@ using UnityEngine.Serialization;
 /// This class starts the game
 /// </summary>
 
-//TODO Jeroen: deel functionaliteiten op.
-
 public class GameStartManager : SingletonBase<GameStartManager>
-//TODO: deel deze class op.
 {
-
         [SerializeField ]private GameObject gameStartCharacter;
         private void Start()
         {
