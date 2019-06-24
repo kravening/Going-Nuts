@@ -22,11 +22,19 @@ public class GameStartManager : SingletonBase<GameStartManager>
         {
             GameTimeManager.GameEndedEvent += RestartGame;
         }
-        /// <summary>
-        /// Checks collision and calls gamestart when its hit
-        /// </summary>
-        /// <param name="collision"></param>
-        //TODO: Zet naar de collision class
+
+        #if UNITY_EDITOR
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                      
+                props[0]?.SetActive(false);
+                GameStart();
+            }
+        }
+        #endif
+
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.CompareTag("Nut"))

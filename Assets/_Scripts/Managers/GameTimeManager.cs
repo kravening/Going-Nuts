@@ -36,6 +36,10 @@ using UnityEngine;
         public delegate void GameEnded();
 
         public static event GameEnded GameEndedEvent;
+        
+        public delegate void SetTimer(int timer);
+
+        public static event SetTimer UpdateTimer;
 
         /// <summary>
         /// current time of the game round
@@ -85,12 +89,12 @@ using UnityEngine;
             
             while (currentTime > 0)
             {
-                UIController.instance.TimerUi((int)currentTime);
+                UpdateTimer?.Invoke((int)currentTime);
                 currentTime -= Time.deltaTime;
                 yield return new WaitForSeconds(0);
             }
             
-            UIController.instance.TimerUi(0);
+            UpdateTimer?.Invoke(0);
             
             yield return new WaitForSeconds(0);
 

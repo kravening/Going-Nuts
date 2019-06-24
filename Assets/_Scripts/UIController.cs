@@ -14,7 +14,7 @@ public class UIController : SingletonBase<UIController>
 	/// </summary>
 	[SerializeField] private TextMeshProUGUI[] textItems;
 	[SerializeField] private GameObject highScoreUi;
-	private int scoreText;
+	public int scoreText;
 
 
 	private void OnDestroy()

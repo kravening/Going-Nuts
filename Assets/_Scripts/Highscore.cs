@@ -9,6 +9,9 @@ public class Highscore : SingletonBase<Highscore>
 {
     private int _currentScore; 
     private KeyHandler _keyHandler;
+    
+    public delegate void  SetScore(int score);
+    public static event SetScore UpdateScoreEvent;
 
     protected override void Awake()
     {
@@ -18,6 +21,7 @@ public class Highscore : SingletonBase<Highscore>
 
         _keyHandler = new KeyHandler();
         GameTimeManager.GameEndedEvent += SaveHighScore;
+        
     }
 
     private void OnDestroy()
@@ -31,9 +35,8 @@ public class Highscore : SingletonBase<Highscore>
     /// <param name="incrementValue"></param>
     public void IncrementScore(int incrementValue)
     {
-        
         _currentScore += incrementValue;
-        UIController.instance.UpdateScoreUi(_currentScore);
+        UpdateScoreEvent?.Invoke(_currentScore);
     }
     
     /// <summary>
@@ -43,7 +46,7 @@ public class Highscore : SingletonBase<Highscore>
     public void DecrementScore(int decrementValue)
     {
         _currentScore -= decrementValue;
-        UIController.instance.UpdateScoreUi(_currentScore);
+        UpdateScoreEvent?.Invoke(_currentScore);
     }
 
     /// <summary>
