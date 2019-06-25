@@ -1,4 +1,7 @@
-﻿public class TimerUi : Textbase
+﻿/// <summary>
+/// handles the subscription of the the UI element to that of the update timer event.
+/// </summary>
+public class TimerUi : Textbase
 {
     /// <summary>
     /// Subscribes to updateTimer
