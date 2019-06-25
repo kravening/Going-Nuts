@@ -1,4 +1,7 @@
-﻿public static class StaticVariables
+﻿/// <summary>
+/// a static class that holds static variables
+/// </summary>
+public static class StaticVariables
 {
     #region HighScore
     public static readonly string HIGH_SCORE = "HighScore";

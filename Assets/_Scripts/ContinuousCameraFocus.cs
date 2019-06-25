@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using Vuforia;
-
+/// <summary>
+/// a class that handles the autofocusing of the camera.
+/// </summary>
 public class ContinuousCameraFocus : MonoBehaviour
 {
     void Start()

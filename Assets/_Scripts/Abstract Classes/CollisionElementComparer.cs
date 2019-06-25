@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// this class compares an element against the element of a colliding object.
+/// </summary>
 public abstract class CollisionElementComparer : ElementComparerBase
 {
     /// <summary>
@@ -10,6 +11,6 @@ public abstract class CollisionElementComparer : ElementComparerBase
     /// <param name="collider"></param>
     protected virtual void OnCollisionEnter(Collision collider)
     {
-        CheckElementLegality(collider.gameObject.GetComponent<ScriptableObjectElement>());
+        CheckElementLegality(collider?.gameObject?.GetComponent<ScriptableObjectElement>());
     }
 }
