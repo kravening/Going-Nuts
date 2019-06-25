@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Scenes/Kaj's scene v2.unity
+    path: Assets/_Scenes/Main.unity
     guid: b7639f7fea506264eb4354a66573877b
   m_configObjects: {}
