@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Generic abstract singleton design pattern base class
+/// </summary>
+/// <typeparam name="T"></typeparam>
 public abstract class SingletonBase<T> : MonoBehaviour where T : Component
 {
     /// <summary>
